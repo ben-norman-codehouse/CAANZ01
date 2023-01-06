@@ -10,7 +10,7 @@ export interface OcProductListProps {
 }
 
 const OcProductList: FunctionComponent<OcProductListProps> = ({ options, renderItem }) => {
-  const products = useOcProductList(options)
+  const products = useOcProductList(options);
 
   return (
     <ol>
