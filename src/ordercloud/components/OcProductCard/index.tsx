@@ -13,7 +13,7 @@ const OcProductCard: FunctionComponent<OcProductCardProps> = ({ product }) => {
       </p>
       <p>{product.Description}</p>
     </div>
-  )
-}
+  );
+};
 
 export default OcProductCard;
