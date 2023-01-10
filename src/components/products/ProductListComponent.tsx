@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import OcProductList from '../../ordercloud/components/OcProductList';
 import OcProductCard from '../../ordercloud/components/OcProductCard';
-import Link from 'next/link';
 import { BuyerProduct } from 'ordercloud-javascript-sdk';
 import useNextRouterMapping, { NextQueryMap } from '../../ordercloud/hooks/useNextRouterMapping';
 
@@ -16,29 +17,19 @@ const queryMap: NextQueryMap = {
   'xp.test_number': 'num',
 };
 
-const TestComponent = () => {
-/**
- * Demonstrates usage of a Text content field within JSS.
- * Text fields are HTML encoded by default.
- */
+const ProductListComponent = () => {
+  /**
+   * Demonstrates usage of a Text content field within JSS.
+   * Text fields are HTML encoded by default.
+   */
 
-  const { isReady, options, updateQuery } = useNextRouterMapping(queryMap);
+  const { options } = useNextRouterMapping(queryMap);
 
   const handleRenderItem = (p: BuyerProduct) => {
-    return (
-      <Link href={`/products/${p.ID}`}>
-        <a>
-          <OcProductCard product={p} />
-        </a>
-      </Link>
-    );
+    return <OcProductCard product={p} />;
   };
 
-  return (
-    <div>
-      <OcProductList options={options} renderItem={handleRenderItem} />
-    </div>
-  );
+  return <OcProductList options={options} renderItem={handleRenderItem} />;
 };
 
-export default TestComponent;
+export default ProductListComponent;

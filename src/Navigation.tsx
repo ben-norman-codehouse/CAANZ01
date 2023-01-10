@@ -19,19 +19,25 @@ const Navigation = (): JSX.Element => {
         </Link>
       </h5>
       <nav className="my-2 my-md-0 mr-md-3">
-        <a
+        {/* <a
           className="p-2 text-dark"
           href="https://jss.sitecore.com"
           target="_blank"
           rel="noopener noreferrer"
         >
           {t('Documentation')}
-        </a>
+        </a> */}
         <Link href="/styleguide">
           <a className="p-2 text-dark">{t('Styleguide')}</a>
         </Link>
         <Link href="/graphql">
           <a className="p-2 text-dark">{t('GraphQL')}</a>
+        </Link>
+        <Link href="/products">
+          <a className="p-2 text-dark">{t('Products')}</a>
+        </Link>
+        <Link href="/cart">
+          <a className="p-2 text-dark">{t('Cart')}</a>
         </Link>
       </nav>
     </div>
