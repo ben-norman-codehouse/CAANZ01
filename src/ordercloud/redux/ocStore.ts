@@ -22,6 +22,10 @@ const store = configureStore({
     ocProductDetail,
     ocCurrentOrder,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export type OcRootState = ReturnType<typeof store.getState>;

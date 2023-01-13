@@ -1,21 +1,21 @@
-import { FunctionComponent, useMemo } from 'react'
-import { useOcSelector } from '../../redux/ocStore'
-import formatPrice from '../../utils/formatPrice'
+import { FunctionComponent, useMemo } from 'react';
+import { useOcSelector } from '../../redux/ocStore';
+import formatPrice from '../../utils/formatPrice';
 
 const OcCheckoutSummary: FunctionComponent = () => {
-  const { order, shipEstimateResponse, payments } = useOcSelector((s) => s.ocCurrentOrder)
+  const { order, shipEstimateResponse, payments } = useOcSelector((s) => s.ocCurrentOrder);
 
   const isShippingAccurate = useMemo(() => {
     return (
       shipEstimateResponse &&
       shipEstimateResponse.ShipEstimates &&
       shipEstimateResponse.ShipEstimates.filter((se) => !se.SelectedShipMethodID).length === 0
-    )
-  }, [shipEstimateResponse])
+    );
+  }, [shipEstimateResponse]);
 
   const isTaxAccurate = useMemo(() => {
-    return order && order.BillingAddress && isShippingAccurate
-  }, [order, isShippingAccurate])
+    return order && order.BillingAddress && isShippingAccurate;
+  }, [order, isShippingAccurate]);
 
   return order ? (
     <table>
@@ -51,7 +51,7 @@ const OcCheckoutSummary: FunctionComponent = () => {
           ))}
       </tbody>
     </table>
-  ) : null
-}
+  ) : null;
+};
 
-export default OcCheckoutSummary
+export default OcCheckoutSummary;

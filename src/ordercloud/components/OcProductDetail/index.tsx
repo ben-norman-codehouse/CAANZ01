@@ -99,37 +99,45 @@ const OcProductDetail: FunctionComponent<OcProductDetailProps> = ({
     },
     [dispatch, lineItem, quantity, onLineItemUpdated, specValues]
   );
+  console.log(lineItem);
+  
 
   return product ? (
-    <div>
-      <h2>{product.Name}</h2>
-      <b>{formatPrice(product.PriceSchedule.PriceBreaks[0].Price)}</b>
-      {/* eslint-disable-next-line */}
+    <div className="row">
+      <div className="col">
+      <img className="img-fluid rounded" src={product.xp.Images[0].url} />
+      </div>
+      <div className="col">
+        <h2>{product.Name}</h2>
+        <b>{formatPrice(product.PriceSchedule.PriceBreaks[0].Price)}</b>
+        {/* eslint-disable-next-line */}
       <p dangerouslySetInnerHTML={{ __html: product.Description }} />
-      <form onSubmit={lineItem ? handleUpdateCart : handleAddToCart}>
-        {specs &&
-          specs.map((s) => {
-            const specValue = specValues.find((sv) => sv.SpecID === s.ID);
-            return (
-              <OcProductSpecField
-                key={s.ID}
-                spec={s}
-                onChange={handleSpecFieldChange}
-                optionId={specValue && specValue.OptionID}
-                value={specValue && specValue.Value}
-              />
-            );
-          })}
-        <OcQuantityInput
-          controlId="addToCart"
-          priceSchedule={product.PriceSchedule}
-          quantity={quantity}
-          onChange={setQuantity}
-        />
-        <button type="submit" disabled={loading}>
-          {`${lineItem ? 'Update' : 'Add To'} Cart`}
-        </button>
-      </form>
+        <form onSubmit={lineItem ? handleUpdateCart : handleAddToCart}>
+          {specs &&
+            specs.map((s) => {
+              const specValue = specValues.find((sv) => sv.SpecID === s.ID);
+              return (
+                <OcProductSpecField
+                  key={s.ID}
+                  spec={s}
+                  onChange={handleSpecFieldChange}
+                  optionId={specValue && specValue.OptionID}
+                  value={specValue && specValue.Value}
+                />
+              );
+            })}
+          <OcQuantityInput
+            controlId="addToCart"
+            priceSchedule={product.PriceSchedule}
+            quantity={quantity}
+            onChange={setQuantity}
+          />
+          <button type="submit" className="btn btn-primary" disabled={loading}>
+            {`${lineItem ? 'Update' : 'Add To'} Cart`}
+          </button>
+        </form>
+      </div>
+      
     </div>
   ) : null;
 };

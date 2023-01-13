@@ -1,13 +1,13 @@
-import { BuyerAddress } from 'ordercloud-javascript-sdk'
-import { ChangeEvent, FunctionComponent, useCallback, useEffect, useMemo, useState } from 'react'
-import useOcAddressBook, { OcAddressListOptions } from '../../hooks/useOcAddressBook'
-import OcAddressForm from '../OcAddressForm'
+import { BuyerAddress } from 'ordercloud-javascript-sdk';
+import { ChangeEvent, FunctionComponent, useCallback, useEffect, useMemo, useState } from 'react';
+import useOcAddressBook, { OcAddressListOptions } from '../../hooks/useOcAddressBook';
+import OcAddressForm from '../OcAddressForm';
 
 interface OcAddressBookProps {
-  id: string
-  selected?: string // id of the selected address
-  onChange?: (address: BuyerAddress) => void
-  listOptions?: OcAddressListOptions
+  id: string;
+  selected?: string; // id of the selected address
+  onChange?: (address: BuyerAddress) => void;
+  listOptions?: OcAddressListOptions;
 }
 
 const OcAddressBook: FunctionComponent<OcAddressBookProps> = ({
@@ -16,12 +16,12 @@ const OcAddressBook: FunctionComponent<OcAddressBookProps> = ({
   selected,
   onChange,
 }) => {
-  const { addresses, saveAddress, deleteAddress } = useOcAddressBook(listOptions)
-  const [selectedId, setSelectedId] = useState(selected || '')
+  const { addresses, saveAddress, deleteAddress } = useOcAddressBook(listOptions);
+  const [selectedId, setSelectedId] = useState(selected || '');
 
   useEffect(() => {
-    setSelectedId(selected || '')
-  }, [selected])
+    setSelectedId(selected || '');
+  }, [selected]);
 
   // useEffect(() => {
   //   setSelectedId((sid) => (sid || addresses.length ? addresses[addresses.length - 1].ID : ''))
@@ -30,35 +30,36 @@ const OcAddressBook: FunctionComponent<OcAddressBookProps> = ({
   const handleSelectionChange = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
       if (onChange) {
-        onChange(addresses.find((a) => a.ID === e.target.value))
+        onChange(addresses.find((a) => a.ID === e.target.value));
       } else {
-        setSelectedId(e.target.value)
+        setSelectedId(e.target.value);
       }
     },
     [onChange, addresses]
-  )
+  );
 
   const handleDeleteAddress = useCallback(
     async (addressId: string) => {
-      await deleteAddress(addressId)
+      await deleteAddress(addressId);
       if (onChange) {
-        onChange(undefined)
+        onChange(undefined);
       } else {
-        setSelectedId('')
+        setSelectedId('');
       }
     },
     [deleteAddress, onChange]
-  )
+  );
 
   const selectedAddress = useMemo(() => {
-    return addresses.find((a) => a.ID === selectedId)
-  }, [addresses, selectedId])
+    return addresses.find((a) => a.ID === selectedId);
+  }, [addresses, selectedId]);
 
   return addresses.length ? (
     <div>
-      <label htmlFor="select_address">
-        Select an address
+      <div className="form-group">
+        <label htmlFor="select_address">Select an address</label>
         <select
+          className="form-control"
           id="select_address"
           name="select_address"
           value={selectedId || ''}
@@ -71,7 +72,8 @@ const OcAddressBook: FunctionComponent<OcAddressBookProps> = ({
             </option>
           ))}
         </select>
-      </label>
+      </div>
+
       <OcAddressForm
         id={`${id}_address_book`}
         address={selectedAddress}
@@ -81,7 +83,7 @@ const OcAddressBook: FunctionComponent<OcAddressBookProps> = ({
     </div>
   ) : (
     <OcAddressForm id={`${id}_address_book`} onSubmit={saveAddress} />
-  )
-}
+  );
+};
 
-export default OcAddressBook
+export default OcAddressBook;

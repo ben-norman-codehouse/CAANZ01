@@ -18,11 +18,15 @@ const CheckoutComponent = () => {
   }, [order, initialized, push]);
 
   return initialized ? (
-    <div style={{ display: 'grid', gridTemplateColumns: `1fr minmax(150px, 25%)` }}>
+    <div className="row">
       <OcCheckout onSubmitted={(orderId: string) => push(`/confirmation/${orderId}`)} />
-      <div>
-        <OcLineItemList />
-        <OcCheckoutSummary />
+      <div className="col-4">
+        <div className="rounded bg-light p-3 mt-3">
+          <OcLineItemList noThump />
+          <div className="rounded bg-secondary text-white p-3 mt-3">
+            <OcCheckoutSummary />
+          </div>
+        </div>
       </div>
     </div>
   ) : null;
