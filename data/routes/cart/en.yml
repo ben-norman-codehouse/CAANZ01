@@ -1,0 +1,8 @@
+fields:
+  pageTitle: Cart | Sitecore JSS
+placeholders:
+  jss-main:
+    - componentName: Cart-Layout
+      placeholders:
+        jss-cart-layout:
+          - componentName: CartComponent

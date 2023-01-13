@@ -5,10 +5,10 @@ import { CommonFieldTypes, SitecoreIcon, Manifest } from '@sitecore-jss/sitecore
  * This function is invoked by convention (*.sitecore.js) when 'jss manifest' is run.
  * @param {Manifest} manifest Manifest instance to add components to
  */
-export default function StyleguideTestComponent(manifest: Manifest): void {
+export default function ProductListComponent(manifest: Manifest): void {
   manifest.addComponent({
-    name: 'Styleguide-TestComponent',
-    templateName: 'Styleguide-TestComponent',
+    name: 'ProductListComponent',
+    templateName: 'ProductListComponent',
     icon: SitecoreIcon.Text,
     fields: [
       { name: 'sample', type: CommonFieldTypes.SingleLineText },
@@ -21,9 +21,6 @@ export default function StyleguideTestComponent(manifest: Manifest): void {
     ],
     // inherit fields from another template (../templates/Styleguide-Explanatory-Component)
     // inheritance adds fields defined on the base template(s) implicitly to this component
-    inherits: [
-      'styleguide-explanatory-component-template',
-    ],
+    inherits: ['styleguide-explanatory-component-template'],
   });
-  
 }

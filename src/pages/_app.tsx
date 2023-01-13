@@ -11,6 +11,15 @@ import { SitecorePageProps } from 'lib/page-props';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'nprogress/nprogress.css';
 import 'assets/app.css';
+import OcProvider from '../ordercloud/redux/ocProvider';
+import { ApiRole } from 'ordercloud-javascript-sdk';
+
+const clientId = process.env.NEXT_PUBLIC_OC_CLIENT_ID || '';
+const scope = process.env.NEXT_PUBLIC_OC_SCOPE
+  ? (process.env.NEXT_PUBLIC_OC_SCOPE.split(',') as ApiRole[])
+  : [];
+const baseApiUrl = process.env.NEXT_PUBLIC_OC_BASE_API_URL;
+const allowAnonymous = Boolean(process.env.NEXT_PUBLIC_OC_ALLOW_ANONYMOUS);
 
 NProgress.configure({ showSpinner: false, trickleSpeed: 100 });
 
@@ -26,7 +35,20 @@ function App({ Component, pageProps }: AppProps<SitecorePageProps>): JSX.Element
     // Note Next.js does not (currently) provide anything for translation, only i18n routing.
     // If your app is not multilingual, next-localization and references to it can be removed.
     <I18nProvider lngDict={dictionary} locale={pageProps.locale}>
-      <Component {...rest} />
+      <OcProvider
+        config={{
+          clientId,
+          scope,
+          baseApiUrl,
+          allowAnonymous,
+          cookieOptions: {
+            prefix: 'hds-nextjs',
+            path: '/',
+          },
+        }}
+      >
+        <Component {...rest} />
+      </OcProvider>
     </I18nProvider>
   );
 }

@@ -13,12 +13,6 @@ placeholders:
         jss-styleguide-layout:
           - componentName: Styleguide-Section
             fields:
-              heading: Anuraj Test
-            placeholders:
-              jss-styleguide-section:
-                - componentName: Styleguide-TestComponent
-          - componentName: Styleguide-Section
-            fields:
               heading: Content Data
             placeholders:
               jss-styleguide-section:

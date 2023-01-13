@@ -13,12 +13,14 @@ const OcProductList: FunctionComponent<OcProductListProps> = ({ options, renderI
   const products = useOcProductList(options);
 
   return (
-    <ol>
+    <div className="card-columns">
       {products &&
         products.map((p) => (
-          <li key={p.ID}>{renderItem ? renderItem(p) : <OcProductCard product={p} />}</li>
+          <div className="card" key={p.ID}>
+            {renderItem ? renderItem(p) : <OcProductCard product={p} />}
+          </div>
         ))}
-    </ol>
+    </div>
   );
 };
 

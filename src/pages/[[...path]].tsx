@@ -13,15 +13,7 @@ import { sitecorePagePropsFactory } from 'lib/page-props-factory';
 // different componentFactory method will be used based on whether page is being edited
 import { componentFactory, editingComponentFactory } from 'temp/componentFactory';
 import { sitemapFetcher } from 'lib/sitemap-fetcher';
-import { ApiRole } from 'ordercloud-javascript-sdk';
-import OcProvider from '../ordercloud/redux/ocProvider';
 
-const clientId = process.env.NEXT_PUBLIC_OC_CLIENT_ID || '';
-const scope = process.env.NEXT_PUBLIC_OC_SCOPE
-  ? (process.env.NEXT_PUBLIC_OC_SCOPE.split(',') as ApiRole[])
-  : [];
-const baseApiUrl = process.env.NEXT_PUBLIC_OC_BASE_API_URL;
-const allowAnonymous = Boolean(process.env.NEXT_PUBLIC_OC_ALLOW_ANONYMOUS);
 
 const SitecorePage = ({ notFound, componentProps, layoutData }: SitecorePageProps): JSX.Element => {
   useEffect(() => {
@@ -30,6 +22,8 @@ const SitecorePage = ({ notFound, componentProps, layoutData }: SitecorePageProp
   }, []);
 
   if (notFound || !layoutData.sitecore.route) {
+    console.log('Im here');
+
     // Shouldn't hit this (as long as 'notFound' is being returned below), but just to be safe
     return <NotFound />;
   }
@@ -42,7 +36,7 @@ const SitecorePage = ({ notFound, componentProps, layoutData }: SitecorePageProp
         componentFactory={isEditing ? editingComponentFactory : componentFactory}
         layoutData={layoutData}
       >
-        <OcProvider
+        {/* <OcProvider
           config={{
             clientId,
             scope,
@@ -53,9 +47,9 @@ const SitecorePage = ({ notFound, componentProps, layoutData }: SitecorePageProp
               path: '/',
             },
           }}
-        >
+        > */}
           <Layout layoutData={layoutData} />
-        </OcProvider>
+        {/* </OcProvider> */}
       </SitecoreContext>
     </ComponentPropsContext>
   );
