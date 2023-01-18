@@ -15,7 +15,7 @@ const OcProductCard: FunctionComponent<OcProductCardProps> = ({ product }) => {
           {`${product.xp.Price} ${product.xp.PriceCurrency}`}{' '}
         </h6>
         <p className="card-text">{product.Description}</p>
-        <Link href={`/products/product-detail?productid=${product.ID}`}>
+        <Link href={`/products/${product.ID}`}>
           <a className="card-link">View Details</a>
         </Link>
       </div>
