@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import OcProductDetail from '../../ordercloud/components/OcProductDetail';
 import { useOcSelector } from '../../ordercloud/redux/ocStore';
 
-const ProductListComponent: FunctionComponent = () => {
+const ProductDetailComponent: FunctionComponent = () => {
   /**
    * Demonstrates usage of a Text content field within JSS.
    * Text fields are HTML encoded by default.
@@ -39,4 +39,4 @@ const ProductListComponent: FunctionComponent = () => {
   );
 };
 
-export default ProductListComponent;
+export default ProductDetailComponent;
