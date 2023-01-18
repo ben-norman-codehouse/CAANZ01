@@ -2,7 +2,7 @@ fields:
   pageTitle: Products List | Sitecore JSS
 placeholders:
   jss-main:
-    - componentName: Product-Layout
+    - componentName: Products-Layout
       placeholders:
-        jss-product-layout:
+        jss-products-layout:
           - componentName: ProductListComponent
