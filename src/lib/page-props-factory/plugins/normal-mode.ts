@@ -15,6 +15,9 @@ function extractPath(params: ParsedUrlQuery | undefined): string {
   if (params === undefined) {
     return '/';
   }
+  if (params.hasOwnProperty('productid')) {
+    return '/product-detail';
+  }
   let path = Array.isArray(params.path) ? params.path.join('/') : params.path ?? '/';
 
   // Ensure leading '/'

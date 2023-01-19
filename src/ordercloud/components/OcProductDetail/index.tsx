@@ -139,7 +139,11 @@ const OcProductDetail: FunctionComponent<OcProductDetailProps> = ({
       </div>
       
     </div>
-  ) : null;
+  ) : (
+    <div>
+      <h2>Product does not exist</h2>
+    </div>
+  );
 };
 
 export default OcProductDetail;
