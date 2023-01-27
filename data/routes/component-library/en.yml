@@ -1,0 +1,7 @@
+fields:
+  pageTitle: Component Library
+placeholders:
+  jss-main:
+    - componentName: GlobalHeader
+    - componentName: PageContentCardList
+    - componentName: GlobalFooter
