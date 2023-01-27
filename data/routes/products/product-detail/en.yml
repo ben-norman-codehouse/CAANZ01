@@ -1,8 +1,0 @@
-fields:
-  pageTitle: Products Detail | Sitecore JSS
-placeholders:
-  jss-main:
-    - componentName: ProductDetail-Layout
-      placeholders:
-        jss-product-detail-layout:
-          - componentName: ProductDetailComponent

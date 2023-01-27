@@ -1,0 +1,16 @@
+fields:
+  pageTitle: Products Detail | Sitecore JSS
+placeholders:
+  jss-main:
+    - componentName: ProductDetail-Layout
+      placeholders:
+        jss-product-detail-layout:
+          - componentName: Styleguide-FieldUsage-RichText
+            fields:
+              heading: Here is something from CMS
+              sample: <p>This text came from a rich text field from the styleguide's RichText component in CMS!</p>
+              # YAML can use multiline definitions (a pipe followed by an indented block) to make writing rich text content easier.
+              # As long as the indent remains consistent, no escaping is required.
+              sample2: |
+                <p>Here is some other text from the sample2 Rich Text field</p>
+          - componentName: ProductDetailComponent
